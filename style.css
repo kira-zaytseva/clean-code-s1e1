@@ -47,16 +47,16 @@
 
 #incomplete-tasks-list,
 #completed-tasks-list {
-  margin:0;
+  margin: 0;
   padding: 0px;
 }
 
 .task-list-item, .task-status-title {
-  list-style:none;
+  list-style: none;
 }
 
 .task, .checkbox-input {
-  outline:none;
+  outline: none;
 }
 
 .button {
@@ -155,14 +155,14 @@
 
 /* Edit Task */
 .task-item {
-  display:none
+  display: none
 }
 
 .edit-mode-input {
-  display:inline-block;
-  width:224px
+  display: inline-block;
+  width: 224px
 }
 
 .edit-mode-label {
-  display:none;
+  display: none;
 }
