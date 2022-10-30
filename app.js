@@ -31,22 +31,27 @@ var createNewTaskElement=function(taskString){
     //button.delete
     var deleteButton=document.createElement("button");//delete button
     var deleteButtonImg=document.createElement("img");//delete button image
+    deleteButtonImg.className = "img-remove";
 
     label.innerText=taskString;
-    label.className='task';
+    label.className='task-label';
 
     //Each elements, needs appending
     checkBox.type="checkbox";
+    checkBox.className="checkbox-input";
     editInput.type="text";
     editInput.className="task";
 
     editButton.innerText="Edit"; //innerText encodes special characters, HTML does not.
     editButton.className="button-edit";
+    editButton.classList.add("button");
 
     deleteButton.className="button-delete";
+    deleteButton.classList.add("button");
     deleteButtonImg.src='./remove.svg';
     deleteButton.appendChild(deleteButtonImg);
 
+    listItem.className="task-list-item";
 
     //and appending.
     listItem.appendChild(checkBox);
@@ -64,12 +69,14 @@ var addTask=function(){
     //Create a new list item with the text from the #new-task:
     if (!taskInput.value) return;
     var listItem=createNewTaskElement(taskInput.value);
+    var editInput=listItem.querySelector('input[type=text]');
 
     //Append listItem to incompleteTaskHolder
     incompleteTaskHolder.appendChild(listItem);
     bindTaskEvents(listItem, taskCompleted);
 
     taskInput.value="";
+    editInput.classList.add("task-item");
 
 }
 
@@ -86,6 +93,7 @@ var editTask=function(){
     var label=listItem.querySelector("label");
     var editBtn=listItem.querySelector(".button-edit");
     var containsClass=listItem.classList.contains("edit-mode");
+
     //If class of the parent is .editmode
     if(containsClass){
 
@@ -96,10 +104,13 @@ var editTask=function(){
     }else{
         editInput.value=label.innerText;
         editBtn.innerText="Save";
+
     }
 
     //toggle .editmode on the parent.
     listItem.classList.toggle("edit-mode");
+    label.classList.toggle("edit-mode-label");
+    editInput.classList.toggle("edit-mode-input");
 };
 
 
@@ -155,9 +166,9 @@ addButton.addEventListener("click",ajaxRequest);
 var bindTaskEvents=function(taskListItem,checkBoxEventHandler){
     console.log("bind list item events");
 //select ListItems children
-    var checkBox=taskListItem.querySelector("input[type=checkbox]");
-    var editButton=taskListItem.querySelector("button.button-edit");
-    var deleteButton=taskListItem.querySelector("button.button-delete");
+    var checkBox=taskListItem.querySelector(".checkbox-input");
+    var editButton=taskListItem.querySelector(".button-edit");
+    var deleteButton=taskListItem.querySelector(".button-delete");
 
 
     //Bind editTask to edit button.
