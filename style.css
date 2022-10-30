@@ -51,11 +51,13 @@
   padding: 0px;
 }
 
-.task-list-item, .task-status-title {
+.task-list-item,
+.task-status-title {
   list-style: none;
 }
 
-.task, .checkbox-input {
+.task,
+.checkbox-input {
   outline: none;
 }
 
@@ -150,7 +152,8 @@
 
 /* Completed */
 .completed-tasks-label {
-  text-decoration: line-through; color: #888;
+  text-decoration: line-through;
+  color: #888;
 }
 
 /* Edit Task */
