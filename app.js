@@ -10,8 +10,8 @@
 
 var taskInput=document.getElementById("new-task");//Add a new task.
 var addButton=document.getElementsByTagName("button")[0];//first button
-var incompleteTaskHolder=document.getElementById("incomplete-tasks-list");//ul of #incompleteTasks
-var completedTasksHolder=document.getElementById("completed-tasks-list");//completed-tasks
+var incompleteTaskHolder=document.querySelector(".todo-section__incomplete-tasks-list");//ul of #incompleteTasks
+var completedTasksHolder=document.querySelector(".completed-section__completed-tasks-list");//completed-tasks
 
 
 //New task list item
@@ -77,7 +77,7 @@ var addTask=function(){
     bindTaskEvents(listItem, taskCompleted);
 
     taskInput.value="";
-    editInput.classList.add("task-item");
+    editInput.classList.add("task-item-input");
 
 }
 
@@ -110,8 +110,8 @@ var editTask=function(){
 
     //toggle .editmode on the parent.
     listItem.classList.toggle("edit-mode");
-    label.classList.toggle("edit-mode-label");
-    editInput.classList.toggle("edit-mode-input");
+    label.classList.toggle("edit-mode__label");
+    editInput.classList.toggle("edit-mode__input");
 };
 
 
@@ -133,9 +133,10 @@ var taskCompleted=function(){
 
     //Append the task list item to the #completed-tasks
     var listItem=this.parentNode;
+    const label = listItem.querySelector(".task-label");
     completedTasksHolder.appendChild(listItem);
     bindTaskEvents(listItem, taskIncomplete);
-
+    label.classList.add("completed-tasks-list__label");
 }
 
 
@@ -147,6 +148,8 @@ var taskIncomplete=function(){
     var listItem=this.parentNode;
     incompleteTaskHolder.appendChild(listItem);
     bindTaskEvents(listItem,taskCompleted);
+    const label = listItem.querySelector(".task-label");
+    label.classList.remove("completed-tasks-list__label");
 }
 
 
